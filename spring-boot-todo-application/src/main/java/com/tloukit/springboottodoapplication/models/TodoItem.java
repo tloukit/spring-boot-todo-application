@@ -2,6 +2,7 @@ package com.tloukit.springboottodoapplication.models;
 
 import java.time.Instant;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,7 +18,10 @@ public class TodoItem {
 	private Long id;
 	
 	private String description;
-	private boolean complete;
+	
+	@Column(name="complete")
+	private Boolean isComplete;
+	
 	private Instant createdDate;
 	private Instant modifiedDate;
 	
@@ -37,12 +41,12 @@ public class TodoItem {
 		this.description = description;
 	}
 
-	public boolean isComplete() {
-		return complete;
+	public Boolean getIsComplete() {
+		return isComplete;
 	}
 
-	public void setComplete(boolean complete) {
-		this.complete = complete;
+	public void setIsComplete(Boolean isComplete) {
+		this.isComplete = isComplete;
 	}
 
 	public Instant getCreatedDate() {
@@ -66,7 +70,7 @@ public class TodoItem {
 	}
 	public TodoItem(String description) {
 		this.description = description;
-		this.complete = false;
+		this.isComplete = Boolean.FALSE;
 		this.createdDate = Instant.now();
 		this.modifiedDate = Instant.now();
 	}
@@ -74,7 +78,7 @@ public class TodoItem {
 	@Override
 	public String toString() {
 		return String.format("TodoItem={id=%d, description='%s', complete='%s', createdDate='%s', "
-				+ "modifiedDate='%s'}", id, description, complete, createdDate, modifiedDate);
+				+ "modifiedDate='%s'}", id, description, isComplete, createdDate, modifiedDate);
 	}
 		
 }
